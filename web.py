@@ -53,7 +53,7 @@ client = pymongo.MongoClient("mongodb+srv://datadog:Barcelona2020@cluster0.zruwc
 
 def query(country,keywords):
 
-    result = client['database1']['collection1'].aggregate([
+    result = client['datadog_hiring_challenge']['companys'].aggregate([
         {
             '$search': {
                 'text': {
