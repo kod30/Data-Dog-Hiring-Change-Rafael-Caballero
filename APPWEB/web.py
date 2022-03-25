@@ -46,4 +46,53 @@ def keyphrases(file,min_word,max_word,num_phrases):
     if num_phrases < len(phrases):
         phrases = phrases[0:num_phrases]
         
-    return phrases    
+    return phrases
+
+client = pymongo.MongoClient("mongodb+srv://datadog:Barcelona2020@cluster0.zruwc.mongodb.net/datadog_hiring_challenge?retryWrites=true&w=majority")
+
+def query(country,keywords):
+
+    result = client['database1']['collection1'].aggregate([
+        {
+            '$search': {
+                'text': {
+                    'path': [
+                        'industry'
+                    ], 
+                    'query': [
+                        ' %s' % (keywords)
+                    ], 
+                    'fuzzy': {
+                        'maxEdits': 2, 
+                        'prefixLength': 2
+                    }
+                }
+            }
+        }, {
+            '$project': {
+                'Name': '$name', 
+                'URL': '$domain', 
+                'Industry': '$industry', 
+                'University': '$Uni', 
+                'City': '$locality', 
+                'Country': '$country', 
+                'score': {
+                    '$meta': 'searchScore'
+                }
+            }
+        }, {
+            '$match': {
+                'Country': '%s' % (country)
+            }
+        }, {
+            '$limit': 10
+        }
+    ])
+
+    df = pd.DataFrame(result)
+
+    return df
+
+if st.button('Search'):
+    df = query(country,phrases)
+    st.write(df)    
