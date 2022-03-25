@@ -94,6 +94,6 @@ def query(country,keywords):
 
     return df
 
-    if st.button('Search'):
-        df = query(country,phrases)
-        st.write(df)    
+if st.button('Search'):
+    df = query(country,phrases)
+    st.write(df)  
