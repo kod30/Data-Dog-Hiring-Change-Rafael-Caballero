@@ -89,7 +89,7 @@ def query(country,keywords):
                 'Country': '%s' % (country)
             }
         }, {
-            '$limit': 10
+            '$limit': 50
         }
     ])
 
