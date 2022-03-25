@@ -14,7 +14,7 @@ nltk.download('punkt')
 import lxml
 
 #country = st.sidebar.text_input('Country')
-country = st.selectbox('Select Country: ',('afghanistan','albania','andorra','angola','argentina','aruba','australia','belgium','brazil','canada','colombia','croatia','cuba','denmark','ecuador','france','germany','hong kong','hungary','italy','japan','spain','united stated'))
+country = st.selectbox('Select Country: ',('afghanistan','albania','andorra','angola','argentina','aruba','australia','belgium','brazil','canada','colombia','croatia','cuba','denmark','ecuador','france','germany','hong kong','hungary','italy','japan','spain','united states'))
 st.write('You selected:', country)
 
 
