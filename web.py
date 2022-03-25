@@ -73,13 +73,9 @@ def query(country,keywords):
             '$project': {
                 'Name': '$name', 
                 'URL': '$domain', 
-                'Industry': '$industry', 
-                'University': '$Uni', 
+                'Position': '$industry',  
                 'City': '$locality', 
-                'Country': '$country', 
-                'score': {
-                    '$meta': 'searchScore'
-                }
+                'Country': '$country'
             }
         }, {
             '$match': {
