@@ -13,7 +13,11 @@ nltk.download('stopwords')
 nltk.download('punkt')
 import lxml
 
-country = st.sidebar.text_input('Country')
+#country = st.sidebar.text_input('Country')
+country = st.selectbox('Select Country: ',('afghanistan','albania','andorra','angola','argentina','aruba','australia','belgium','brazil','canada','colombia','croatia','cuba','denmark','ecuador','france','germany','hong kong','hungary','italy','japan','spain','united stated'))
+st.write('You selected:', country)
+
+
 uploaded_file = st.file_uploader('Upload your resume')
 file_text = ''
 phrases = []
