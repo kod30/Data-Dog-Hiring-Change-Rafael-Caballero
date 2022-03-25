@@ -98,7 +98,7 @@ def query(country,keywords):
     return df
 
 if st.button('Search'):
-    st.text(phrases)
+    st.text(q_terms)
     df = query(country,phrases)
     df = df.astype({"_id": str})
     st.write(df)
