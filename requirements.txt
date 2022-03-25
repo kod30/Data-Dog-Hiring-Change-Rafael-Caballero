@@ -3,6 +3,10 @@ lxml==4.5.2
 jinja2
 nltk==3.7
 pandas==0.25.3
+cython
+string
+io
+re
 pdfplumber==0.6.0
 pymongo==4.0.2
 PyPDF2==1.26.0
