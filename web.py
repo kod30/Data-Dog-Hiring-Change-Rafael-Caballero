@@ -25,6 +25,18 @@ uploaded_file = st.file_uploader('Upload your resume')
 file_text = ''
 phrases = []
 
+if uploaded_file is not None:
+    uploaded_file.seek(0)
+    file = uploaded_file.read()
+    pdf = PyPDF2.PdfFileReader(io.BytesIO(file))
+    
+    for page in range(pdf.getNumPages()):
+        file_text += (pdf.getPage(page).extractText())
+        phrases.extend(keyphrases(file_text,2,4,10))
+        
+if len(phrases) > 0:
+    q_terms = st.multiselect('Select key phrases',options=phrases,default=phrases)
+
 def keyphrases(file,min_word,max_word,num_phrases):
 
     text = file
@@ -43,17 +55,7 @@ def keyphrases(file,min_word,max_word,num_phrases):
         
     return phrases
 
-if uploaded_file is not None:
-    uploaded_file.seek(0)
-    file = uploaded_file.read()
-    pdf = PyPDF2.PdfFileReader(io.BytesIO(file))
-    
-    for page in range(pdf.getNumPages()):
-        file_text += (pdf.getPage(page).extractText())
-        phrases.extend(keyphrases(file_text,2,4,10))
-        
-if len(phrases) > 0:
-    q_terms = st.multiselect('Select key phrases',options=phrases,default=phrases)
+
 
 
 client = pymongo.MongoClient("mongodb+srv://datadog:Barcelona2020@cluster0.zruwc.mongodb.net/datadog_hiring_challenge?retryWrites=true&w=majority")
