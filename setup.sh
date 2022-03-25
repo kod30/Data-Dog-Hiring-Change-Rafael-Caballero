@@ -1,3 +1,5 @@
+$BUILD_DIR/.heroku/python/bin/python -m pip install cython
+
 mkdir -p ~/.streamlit/
 
 echo "\
